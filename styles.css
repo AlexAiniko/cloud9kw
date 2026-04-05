@@ -522,6 +522,51 @@ a {
   transition-delay: 0.74s;
 }
 
+/* ---------- Per-slide text positioning ---------- */
+
+/* TOP position (slides 0, 2) -- default is already top 8% */
+.experience__slide--top .experience__overlay-text {
+  top: 6%;
+  bottom: auto;
+}
+
+/* BOTTOM position (slides 1, 3) */
+.experience__slide--bottom .experience__overlay-text {
+  top: auto;
+  bottom: 12%;
+}
+
+/* ---------- Dark text variant (for bright images) ---------- */
+.experience__slide--dark-text .experience__overlay-line {
+  color: rgba(15, 15, 12, 0.9);
+  text-shadow:
+    0 1px 20px rgba(255, 255, 255, 0.3),
+    0 0 40px rgba(255, 255, 255, 0.15);
+}
+
+.experience__slide--dark-text .experience__overlay-line--light {
+  color: rgba(15, 15, 12, 0.55);
+}
+
+/* Subtle light overlay for readability on slide 3 (master suite) */
+.experience__slide-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0.25) 0%,
+    rgba(255, 255, 255, 0.08) 40%,
+    transparent 70%
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Ensure overlay text stays above the overlay */
+.experience__slide--dark-text .experience__overlay-text {
+  z-index: 4;
+}
+
 /* Progress bar -- gradient glow */
 .experience__progress {
   position: absolute;
@@ -971,16 +1016,25 @@ a {
     font-size: 0.65rem;
   }
 
-  /* Overlay text: TOP of viewport on mobile, massive */
+  /* Overlay text base on mobile -- massive */
   .experience__overlay-text {
     left: 1.2rem;
     right: 1.2rem;
-    top: 6%;
-    bottom: auto;
     transform: none;
     align-items: flex-start;
     text-align: left;
     max-width: 100%;
+  }
+
+  /* Per-slide positions on mobile */
+  .experience__slide--top .experience__overlay-text {
+    top: 5%;
+    bottom: auto;
+  }
+
+  .experience__slide--bottom .experience__overlay-text {
+    top: auto;
+    bottom: 10%;
   }
 
   .experience__overlay-line {
@@ -992,6 +1046,13 @@ a {
       0 4px 80px rgba(10, 10, 9, 0.4);
     line-height: 0.95;
     letter-spacing: -0.01em;
+  }
+
+  /* Dark text shadow override on mobile */
+  .experience__slide--dark-text .experience__overlay-line {
+    text-shadow:
+      0 1px 15px rgba(255, 255, 255, 0.4),
+      0 0 30px rgba(255, 255, 255, 0.2);
   }
 
   /* Watermark on mobile -- still visible but scaled */
