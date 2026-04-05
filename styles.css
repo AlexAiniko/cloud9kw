@@ -456,29 +456,30 @@ a {
 /* Large editorial overlay text -- clip-path reveal animation */
 .experience__overlay-text {
   position: absolute;
+  left: 5%;
   right: 5%;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 8%;
   z-index: 3;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
-  text-align: right;
+  align-items: flex-start;
+  text-align: left;
   pointer-events: none;
-  max-width: 50%;
+  max-width: 90%;
 }
 
 .experience__overlay-line {
   display: block;
   font-family: 'Cormorant Garamond', 'Georgia', serif;
-  font-size: clamp(3.4rem, 8vw, 9rem);
+  font-size: clamp(4rem, 9vw, 10rem);
   font-weight: 500;
-  line-height: 1.0;
-  letter-spacing: 0.01em;
-  color: rgba(250, 249, 246, 0.92);
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+  color: rgba(250, 249, 246, 0.95);
   text-shadow:
-    0 2px 30px rgba(10, 10, 9, 0.5),
-    0 0 80px rgba(10, 10, 9, 0.3);
+    0 2px 40px rgba(10, 10, 9, 0.6),
+    0 0 80px rgba(10, 10, 9, 0.4),
+    0 4px 60px rgba(10, 10, 9, 0.3);
   opacity: 0;
   transform: translateY(30px);
   clip-path: inset(100% 0 0 0);
@@ -905,12 +906,12 @@ a {
   }
 
   .experience__overlay-line {
-    font-size: clamp(2.8rem, 6.5vw, 5.5rem);
+    font-size: clamp(3.2rem, 7.5vw, 6.5rem);
   }
 
   .experience__overlay-text {
-    right: 4%;
-    max-width: 55%;
+    top: 8%;
+    max-width: 60%;
   }
 }
 
@@ -970,13 +971,12 @@ a {
     font-size: 0.65rem;
   }
 
-  /* Overlay text: full-width on mobile, left-aligned, BIGGER */
+  /* Overlay text: TOP of viewport on mobile, massive */
   .experience__overlay-text {
-    right: auto;
-    left: 1.5rem;
-    right: 1.5rem;
-    top: auto;
-    bottom: 9rem;
+    left: 1.2rem;
+    right: 1.2rem;
+    top: 6%;
+    bottom: auto;
     transform: none;
     align-items: flex-start;
     text-align: left;
@@ -984,12 +984,14 @@ a {
   }
 
   .experience__overlay-line {
-    font-size: clamp(3rem, 12vw, 5rem);
+    font-size: clamp(3.8rem, 15vw, 6rem);
     font-weight: 500;
     text-shadow:
-      0 2px 20px rgba(10, 10, 9, 0.8),
-      0 0 60px rgba(10, 10, 9, 0.6);
-    line-height: 1.08;
+      0 2px 30px rgba(10, 10, 9, 0.7),
+      0 0 60px rgba(10, 10, 9, 0.5),
+      0 4px 80px rgba(10, 10, 9, 0.4);
+    line-height: 0.95;
+    letter-spacing: -0.01em;
   }
 
   /* Watermark on mobile -- still visible but scaled */
@@ -1098,8 +1100,9 @@ a {
   }
 
   .experience__overlay-line {
-    font-size: clamp(2.6rem, 13vw, 4rem);
+    font-size: clamp(3.2rem, 14vw, 5rem);
     font-weight: 500;
+    line-height: 0.95;
   }
 
   .location__heading {
