@@ -270,6 +270,21 @@ a {
   animation-delay: calc(1.6s + var(--tw) * 0.12s);
 }
 
+/* Designer credit under tagline */
+.arrival__designer {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(0.6rem, 1vw, 0.75rem);
+  font-weight: 300;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(250, 249, 246, 0.35);
+  margin-top: 1.2rem;
+  opacity: 0;
+  transform: translateY(15px);
+  animation: taglineWordIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation-delay: 2.2s;
+}
+
 @keyframes taglineWordIn {
   0% {
     opacity: 0;
@@ -795,13 +810,6 @@ a {
   object-fit: cover;
   object-position: center 35%;
   opacity: 0.55;
-  will-change: transform;
-  transform: scale(1.02);
-  transition: transform 14s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.scene-location.is-visible .location__image-wrap img {
-  transform: scale(1.0);
 }
 
 .location__overlay {
@@ -879,8 +887,7 @@ a {
    ============================================ */
 .scene-designer {
   padding: 8rem 3rem;
-  padding-top: 10rem;
-  background: linear-gradient(to bottom, #0a0a09 0%, #faf9f6 12%, #faf9f6 100%);
+  background: #faf9f6;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -890,14 +897,12 @@ a {
 .designer__content {
   max-width: 580px;
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: none;
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .scene-designer.is-visible .designer__content {
   opacity: 1;
-  transform: translateY(0);
 }
 
 .designer__text {
@@ -1066,6 +1071,12 @@ a {
 
   .arrival__tagline-word {
     font-weight: 400;
+  }
+
+  .arrival__designer {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    margin-top: 1rem;
   }
 
   .arrival__content {
