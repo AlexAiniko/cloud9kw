@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cloud 9 | Key West</title>
+  <meta name="description" content="Cloud 9. A visual experience of a thoughtfully restored retreat in Old Town Key West.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Cloud 9 | Key West">
+  <meta property="og:description" content="A visual experience of a designer retreat in Old Town Key West.">
+  <meta property="og:image" content="images/hero-pool-exterior.jpg">
+  <meta property="og:type" content="website">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet">
+
+  <!-- Preload hero image -->
+  <link rel="preload" as="image" href="images/entrance-through-doors.jpg">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ============================================
+       SCENE 1: THE ARRIVAL
+       Cinematic opening with animated title reveal
+       ============================================ -->
+  <section class="scene-arrival" id="top" aria-label="Cloud 9 arrival">
+    <div class="arrival__image-wrap">
+      <img src="images/entrance-through-doors.jpg" alt="View through open black doors at 512 Fleming Street revealing a sunlit courtyard with brick pavers and tropical palms" class="arrival__image" fetchpriority="high">
+    </div>
+    <div class="arrival__overlay"></div>
+
+    <div class="arrival__content">
+      <div class="arrival__title-wrap">
+        <h1 class="arrival__title">
+          <span class="arrival__title-line arrival__title-line--1">Cloud</span>
+          <span class="arrival__title-line arrival__title-line--2">9</span>
+        </h1>
+      </div>
+      <p class="arrival__tagline">Key West, Florida</p>
+    </div>
+
+    <div class="arrival__scroll-cue">
+      <div class="arrival__scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       SCENE 2: THE EXPERIENCE
+       Scroll-driven full-viewport slideshow
+       ============================================ -->
+  <section class="scene-experience" id="experience" aria-label="Visual journey through Cloud 9">
+    <div class="experience__sticky">
+      <div class="experience__slides">
+        <!-- Slide 0 : The Courtyard -->
+        <div class="experience__slide is-active" data-slide="0">
+          <img src="images/scurto-456.jpg" alt="Private courtyard pool viewed through ornate carved white doors, flanked by tropical palms and brick pavers" loading="lazy">
+          <div class="experience__overlay-text">
+            <span class="experience__overlay-line">Step through</span>
+            <span class="experience__overlay-line">the gate.</span>
+            <span class="experience__overlay-line experience__overlay-line--light">Leave the world</span>
+            <span class="experience__overlay-line experience__overlay-line--light">behind.</span>
+          </div>
+          <div class="experience__caption">
+            <span class="experience__caption-label">The Courtyard</span>
+            <span class="experience__caption-text">Step through. Leave everything behind.</span>
+          </div>
+        </div>
+        <!-- Slide 1 : The Living Room -->
+        <div class="experience__slide" data-slide="1">
+          <img src="images/scurto-422.jpg" alt="Open-concept living space with white sectional sofa, coral pillows, skylights, and natural light flooding the room" loading="lazy">
+          <div class="experience__overlay-text">
+            <span class="experience__overlay-line">Light pours in</span>
+            <span class="experience__overlay-line">from every</span>
+            <span class="experience__overlay-line experience__overlay-line--light">direction.</span>
+          </div>
+          <div class="experience__caption">
+            <span class="experience__caption-label">The Living Room</span>
+            <span class="experience__caption-text">Open, sunlit, dressed in white.</span>
+          </div>
+        </div>
+        <!-- Slide 2 : The Kitchen -->
+        <div class="experience__slide" data-slide="2">
+          <img src="images/scurto-434.jpg" alt="Bright galley kitchen with stainless steel appliances, white cabinetry, skylight, and garden window" loading="lazy">
+          <div class="experience__overlay-text">
+            <span class="experience__overlay-line">Every detail,</span>
+            <span class="experience__overlay-line experience__overlay-line--light">considered.</span>
+          </div>
+          <div class="experience__caption">
+            <span class="experience__caption-label">The Kitchen</span>
+            <span class="experience__caption-text">Gourmet finishes. Natural light from above.</span>
+          </div>
+        </div>
+        <!-- Slide 3 : The Master Suite -->
+        <div class="experience__slide" data-slide="3">
+          <img src="images/scurto-443.jpg" alt="Master suite with king bed, colorful art above headboard, French doors open to a tropical garden" loading="lazy">
+          <div class="experience__overlay-text">
+            <span class="experience__overlay-line">Open the doors.</span>
+            <span class="experience__overlay-line experience__overlay-line--light">The pool</span>
+            <span class="experience__overlay-line experience__overlay-line--light">is yours.</span>
+          </div>
+          <div class="experience__caption">
+            <span class="experience__caption-label">The Master Suite</span>
+            <span class="experience__caption-text">Wake up. Walk to the pool. That simple.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Progress indicator -->
+      <div class="experience__progress">
+        <div class="experience__progress-bar"></div>
+      </div>
+
+      <!-- Slide counter -->
+      <div class="experience__counter">
+        <span class="experience__counter-current">01</span>
+        <span class="experience__counter-sep"></span>
+        <span class="experience__counter-total">04</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       SCENE 3: THE DETAILS
+       Horizontal-scroll gallery of detail shots
+       ============================================ -->
+  <section class="scene-details" id="details" aria-label="Architectural details">
+    <div class="details__intro">
+      <span class="details__label">The Details</span>
+      <h2 class="details__heading">Curated, not decorated</h2>
+    </div>
+
+    <div class="details__track-wrap">
+      <div class="details__track">
+        <div class="details__item">
+          <div class="details__item-img">
+            <img src="images/scurto-453.jpg" alt="Signature gecko gate with custom iron tropical leaf and gecko metalwork bearing address 512" loading="lazy">
+          </div>
+          <span class="details__item-caption">The gecko gate</span>
+        </div>
+        <div class="details__item">
+          <div class="details__item-img">
+            <img src="images/scurto-431.jpg" alt="Open-plan living and dining with reclaimed wood table, white furnishings, and vaulted ceilings" loading="lazy">
+          </div>
+          <span class="details__item-caption">Hardwood underfoot</span>
+        </div>
+        <div class="details__item">
+          <div class="details__item-img">
+            <img src="images/scurto-455.jpg" alt="Open entrance doors revealing the pool courtyard beyond, framed by the terracotta facade" loading="lazy">
+          </div>
+          <span class="details__item-caption">French doors to the courtyard</span>
+        </div>
+        <div class="details__item">
+          <div class="details__item-img">
+            <img src="images/scurto-451.jpg" alt="Covered side porch with a white wooden swing bench flanked by tropical palms" loading="lazy">
+          </div>
+          <span class="details__item-caption">A porch swing for two</span>
+        </div>
+        <div class="details__item">
+          <div class="details__item-img">
+            <img src="images/pool-tropical.jpg" alt="Pool water feature with mosaic tile wall surrounded by dense tropical plantings" loading="lazy">
+          </div>
+          <span class="details__item-caption">Water and stone</span>
+        </div>
+        <div class="details__item">
+          <div class="details__item-img">
+            <img src="images/entrance-exterior.jpg" alt="Street view of 512 Fleming showing the terracotta entrance with gecko gate between Old Town storefronts" loading="lazy">
+          </div>
+          <span class="details__item-caption">512 Fleming Street</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       SCENE 4: THE LOCATION
+       Evocative text over moody exterior
+       ============================================ -->
+  <section class="scene-location" id="location" aria-label="Location">
+    <div class="location__image-wrap">
+      <img src="images/hero-pool-exterior.jpg" alt="Cloud 9 white cottage exterior with private pool, upper balcony, and tropical garden at dusk" loading="lazy">
+    </div>
+    <div class="location__overlay"></div>
+    <div class="location__content">
+      <span class="location__label">Old Town Key West</span>
+      <h2 class="location__heading">Half a block from Duval.<br>A world away from everything.</h2>
+      <p class="location__sub">Steps from the street. Minutes from the shore. A lifetime from ordinary.</p>
+    </div>
+  </section>
+
+  <!-- ============================================
+       SCENE 5: THE DESIGNER (placeholder)
+       ============================================ -->
+  <section class="scene-designer" id="designer" aria-label="Design credits">
+    <div class="designer__content">
+      <p class="designer__text">Classic Key West architecture reimagined with modern comfort and timeless style.</p>
+      <!-- Swap in designer name when confirmed:
+      <p class="designer__credit">Designed by [Name]</p>
+      -->
+    </div>
+  </section>
+
+  <!-- ============================================
+       FOOTER
+       ============================================ -->
+  <footer class="site-footer" aria-label="Site footer">
+    <p class="footer__name">Cloud 9</p>
+    <p class="footer__location">Key West, Florida</p>
+    <p class="footer__manager">Historic Key West Vacation Rentals</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+
+</body>
+</html>

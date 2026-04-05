@@ -1,0 +1,825 @@
+/* ============================================
+   Cloud 9 Key West -- Immersive Visual Experience
+   Scroll-driven, cinematic, pure CSS + vanilla JS
+   ============================================ */
+
+/* ---------- Reset & Base ---------- */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  /* No smooth scroll -- we handle scroll behavior in JS for precision */
+}
+
+body {
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: #2c2c2a;
+  background-color: #0a0a09;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .arrival__image {
+    transform: none !important;
+  }
+
+  .experience__slide img {
+    transform: none !important;
+  }
+
+  .experience__overlay-line {
+    opacity: 1 !important;
+    transform: translateX(0) !important;
+  }
+}
+
+
+/* ============================================
+   SCENE 1: THE ARRIVAL
+   Full-viewport cinematic opening
+   ============================================ */
+.scene-arrival {
+  position: relative;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #0a0a09;
+}
+
+/* Background image with Ken Burns */
+.arrival__image-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.arrival__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  will-change: transform, opacity;
+  transform: scale(1.12);
+  opacity: 0;
+  animation: arrivalImageReveal 3s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+}
+
+@keyframes arrivalImageReveal {
+  0% {
+    opacity: 0;
+    transform: scale(1.18);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+/* Gradient overlay -- dark vignette */
+.arrival__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    radial-gradient(ellipse at center, rgba(10, 10, 9, 0.15) 0%, rgba(10, 10, 9, 0.55) 100%),
+    linear-gradient(180deg, rgba(10, 10, 9, 0.35) 0%, rgba(10, 10, 9, 0.05) 40%, rgba(10, 10, 9, 0.4) 100%);
+}
+
+/* Title */
+.arrival__content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 0 2rem;
+}
+
+.arrival__title-wrap {
+  overflow: hidden;
+}
+
+.arrival__title {
+  font-family: 'Cormorant Garamond', 'Georgia', serif;
+  font-weight: 300;
+  color: #faf9f6;
+  line-height: 0.88;
+  letter-spacing: 0.04em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+.arrival__title-line {
+  display: block;
+  opacity: 0;
+  transform: translateY(100%);
+  will-change: transform, opacity;
+}
+
+.arrival__title-line--1 {
+  font-size: clamp(4.5rem, 14vw, 11rem);
+  animation: titleLineUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.8s forwards;
+}
+
+.arrival__title-line--2 {
+  font-size: clamp(5.5rem, 18vw, 14rem);
+  animation: titleLineUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) 1.0s forwards;
+  margin-top: -0.1em;
+}
+
+@keyframes titleLineUp {
+  0% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.arrival__tagline {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(0.65rem, 1.2vw, 0.82rem);
+  font-weight: 300;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: rgba(250, 249, 246, 0.55);
+  margin-top: 2.5rem;
+  opacity: 0;
+  animation: fadeIn 1.5s ease 1.8s forwards;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+/* Scroll cue */
+.arrival__scroll-cue {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  opacity: 0;
+  animation: fadeIn 1s ease 2.8s forwards;
+}
+
+.arrival__scroll-line {
+  width: 1px;
+  height: 56px;
+  background: linear-gradient(180deg, rgba(250, 249, 246, 0.5) 0%, transparent 100%);
+  animation: scrollPulse 2.8s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.15; transform: scaleY(0.5); }
+  50% { opacity: 1; transform: scaleY(1); }
+}
+
+
+/* ============================================
+   SCENE 2: THE EXPERIENCE
+   Scroll-driven full-viewport slideshow
+   ============================================ */
+.scene-experience {
+  position: relative;
+  /* 4 slides x 120vh = 480vh of scroll space, +100vh for the sticky container */
+  height: 580vh;
+  background: #0a0a09;
+}
+
+.experience__sticky {
+  position: sticky;
+  top: 0;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+/* Slides */
+.experience__slides {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.experience__slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity;
+}
+
+.experience__slide.is-active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.experience__slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  will-change: transform;
+  transform: scale(1.04);
+  transition: transform 8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.experience__slide.is-active img {
+  transform: scale(1.0);
+}
+
+/* Caption overlay */
+.experience__caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 6rem 3rem 3.5rem;
+  background: linear-gradient(0deg, rgba(10, 10, 9, 0.6) 0%, rgba(10, 10, 9, 0.0) 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.7s ease 0.15s, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.15s;
+}
+
+.experience__slide.is-active .experience__caption {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.experience__caption-label {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.62rem;
+  font-weight: 400;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(250, 249, 246, 0.5);
+}
+
+.experience__caption-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.4rem, 2.8vw, 2.2rem);
+  font-weight: 300;
+  font-style: italic;
+  color: rgba(250, 249, 246, 0.85);
+  line-height: 1.3;
+}
+
+/* Large editorial overlay text -- right side */
+.experience__overlay-text {
+  position: absolute;
+  right: 5%;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+  pointer-events: none;
+  max-width: 50%;
+}
+
+.experience__overlay-line {
+  display: block;
+  font-family: 'Cormorant Garamond', 'Georgia', serif;
+  font-size: clamp(2.8rem, 6.5vw, 7rem);
+  font-weight: 300;
+  line-height: 1.05;
+  letter-spacing: 0.02em;
+  color: rgba(250, 249, 246, 0.88);
+  text-shadow:
+    0 2px 30px rgba(10, 10, 9, 0.5),
+    0 0 80px rgba(10, 10, 9, 0.3);
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.experience__overlay-line--light {
+  font-style: italic;
+  color: rgba(250, 249, 246, 0.6);
+}
+
+/* Stagger the lines */
+.experience__slide.is-active .experience__overlay-line:nth-child(1) {
+  opacity: 1;
+  transform: translateX(0);
+  transition-delay: 0.2s;
+}
+
+.experience__slide.is-active .experience__overlay-line:nth-child(2) {
+  opacity: 1;
+  transform: translateX(0);
+  transition-delay: 0.35s;
+}
+
+.experience__slide.is-active .experience__overlay-line:nth-child(3) {
+  opacity: 1;
+  transform: translateX(0);
+  transition-delay: 0.5s;
+}
+
+.experience__slide.is-active .experience__overlay-line:nth-child(4) {
+  opacity: 1;
+  transform: translateX(0);
+  transition-delay: 0.65s;
+}
+
+/* Progress bar */
+.experience__progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: rgba(250, 249, 246, 0.08);
+  z-index: 5;
+}
+
+.experience__progress-bar {
+  height: 100%;
+  width: 0%;
+  background: rgba(250, 249, 246, 0.35);
+  transition: width 0.3s ease;
+  will-change: width;
+}
+
+/* Counter */
+.experience__counter {
+  position: absolute;
+  top: 2.5rem;
+  right: 3rem;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 300;
+  letter-spacing: 0.15em;
+  color: rgba(250, 249, 246, 0.4);
+}
+
+.experience__counter-current {
+  color: rgba(250, 249, 246, 0.8);
+  font-weight: 400;
+  min-width: 1.2em;
+  text-align: right;
+}
+
+.experience__counter-sep {
+  display: block;
+  width: 20px;
+  height: 1px;
+  background: rgba(250, 249, 246, 0.2);
+}
+
+
+/* ============================================
+   SCENE 3: THE DETAILS
+   Horizontal-scroll gallery driven by vertical scroll
+   ============================================ */
+.scene-details {
+  position: relative;
+  background: #faf9f6;
+  /* Enough height for horizontal scrolling: intro + scroll space */
+  height: 300vh;
+}
+
+.details__intro {
+  position: relative;
+  z-index: 2;
+  padding: 8rem 3rem 3rem;
+  text-align: left;
+  max-width: 1200px;
+  margin: 0 auto;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.details__intro.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.details__label {
+  display: block;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.62rem;
+  font-weight: 400;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #8a9a8a;
+  margin-bottom: 1rem;
+}
+
+.details__heading {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  font-weight: 300;
+  color: #2c2c2a;
+  line-height: 1.1;
+  letter-spacing: 0.01em;
+}
+
+/* Horizontal track (sticky) */
+.details__track-wrap {
+  position: sticky;
+  top: 0;
+  height: 100dvh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.details__track {
+  display: flex;
+  gap: 2rem;
+  padding: 0 3rem;
+  will-change: transform;
+}
+
+.details__item {
+  flex: 0 0 auto;
+  width: 38vw;
+  min-width: 320px;
+  max-width: 560px;
+}
+
+.details__item-img {
+  overflow: hidden;
+  border-radius: 2px;
+}
+
+.details__item-img img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.details__item:hover .details__item-img img {
+  transform: scale(1.03);
+}
+
+.details__item-caption {
+  display: block;
+  margin-top: 1rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.05rem;
+  font-style: italic;
+  color: #6a6a6a;
+  letter-spacing: 0.02em;
+}
+
+
+/* ============================================
+   SCENE 4: THE LOCATION
+   Full-viewport with text overlay
+   ============================================ */
+.scene-location {
+  position: relative;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #0a0a09;
+}
+
+.location__image-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.location__image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 35%;
+  opacity: 0.55;
+  will-change: transform;
+  transform: scale(1.06);
+  transition: transform 12s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scene-location.is-visible .location__image-wrap img {
+  transform: scale(1.0);
+}
+
+.location__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    radial-gradient(ellipse at center, rgba(10, 10, 9, 0.2) 0%, rgba(10, 10, 9, 0.6) 100%);
+}
+
+.location__content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 3rem;
+  max-width: 720px;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scene-location.is-visible .location__content {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.location__label {
+  display: block;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.62rem;
+  font-weight: 400;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: rgba(250, 249, 246, 0.4);
+  margin-bottom: 2rem;
+}
+
+.location__heading {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 4.5vw, 3.6rem);
+  font-weight: 300;
+  color: #faf9f6;
+  line-height: 1.25;
+  letter-spacing: 0.02em;
+  margin-bottom: 1.5rem;
+}
+
+.location__sub {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(0.82rem, 1.2vw, 0.95rem);
+  font-weight: 300;
+  color: rgba(250, 249, 246, 0.45);
+  line-height: 1.7;
+  letter-spacing: 0.03em;
+}
+
+
+/* ============================================
+   SCENE 5: THE DESIGNER
+   Minimal placeholder
+   ============================================ */
+.scene-designer {
+  padding: 8rem 3rem;
+  background: #faf9f6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.designer__content {
+  max-width: 580px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scene-designer.is-visible .designer__content {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.designer__text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.3rem, 2.2vw, 1.7rem);
+  font-weight: 300;
+  font-style: italic;
+  color: #6a6a6a;
+  line-height: 1.65;
+  letter-spacing: 0.01em;
+}
+
+.designer__credit {
+  margin-top: 2rem;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #999;
+}
+
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.site-footer {
+  padding: 4rem 3rem 3rem;
+  background: #faf9f6;
+  text-align: center;
+  border-top: 1px solid rgba(44, 44, 42, 0.08);
+}
+
+.footer__name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
+  font-weight: 300;
+  letter-spacing: 0.06em;
+  color: #2c2c2a;
+  margin-bottom: 0.3rem;
+}
+
+.footer__location {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 300;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #999;
+  margin-bottom: 0.5rem;
+}
+
+.footer__manager {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.62rem;
+  font-weight: 300;
+  letter-spacing: 0.15em;
+  color: #bbb;
+}
+
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .details__item {
+    width: 50vw;
+    min-width: 280px;
+  }
+
+  .experience__counter {
+    top: 1.5rem;
+    right: 1.5rem;
+  }
+
+  .experience__caption {
+    padding: 5rem 2rem 2.5rem;
+  }
+
+  .experience__overlay-line {
+    font-size: clamp(2.2rem, 5vw, 4.5rem);
+  }
+
+  .experience__overlay-text {
+    right: 4%;
+    max-width: 55%;
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .arrival__title-line--1 {
+    font-size: clamp(3.5rem, 18vw, 5rem);
+  }
+
+  .arrival__title-line--2 {
+    font-size: clamp(4.5rem, 24vw, 6.5rem);
+  }
+
+  .arrival__tagline {
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    margin-top: 1.5rem;
+  }
+
+  /* Slideshow */
+  .scene-experience {
+    height: 420vh;
+  }
+
+  .experience__caption {
+    padding: 4rem 1.5rem 2rem;
+  }
+
+  .experience__caption-text {
+    font-size: 1.2rem;
+  }
+
+  .experience__counter {
+    top: 1rem;
+    right: 1rem;
+    font-size: 0.6rem;
+  }
+
+  .experience__overlay-text {
+    right: auto;
+    left: 1.5rem;
+    top: auto;
+    bottom: 8rem;
+    transform: none;
+    align-items: flex-start;
+    text-align: left;
+    max-width: 85%;
+  }
+
+  .experience__overlay-line {
+    font-size: clamp(1.8rem, 8vw, 3rem);
+    text-shadow:
+      0 2px 20px rgba(10, 10, 9, 0.7),
+      0 0 60px rgba(10, 10, 9, 0.5);
+  }
+
+  /* Details */
+  .scene-details {
+    height: 250vh;
+  }
+
+  .details__intro {
+    padding: 5rem 1.5rem 2rem;
+  }
+
+  .details__track {
+    padding: 0 1.5rem;
+    gap: 1.2rem;
+  }
+
+  .details__item {
+    width: 75vw;
+    min-width: 260px;
+    max-width: 360px;
+  }
+
+  /* Location */
+  .location__content {
+    padding: 2rem 1.5rem;
+  }
+
+  .location__heading {
+    font-size: clamp(1.6rem, 7vw, 2.4rem);
+  }
+
+  /* Designer */
+  .scene-designer {
+    padding: 5rem 1.5rem;
+  }
+
+  /* Footer */
+  .site-footer {
+    padding: 3rem 1.5rem 2rem;
+  }
+}
+
+/* Very tall screens -- ensure arrival fills */
+@media (max-height: 500px) {
+  .scene-arrival {
+    min-height: 100vh;
+  }
+
+  .experience__sticky {
+    height: 100vh;
+  }
+
+  .details__track-wrap {
+    height: 100vh;
+  }
+}
