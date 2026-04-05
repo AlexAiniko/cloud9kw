@@ -717,31 +717,26 @@ a {
   transition-delay: 0.25s;
 }
 
-/* Staggered masonry grid */
-.details__grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-  padding: 3rem 3rem 6rem;
-  max-width: 1200px;
-  margin: 0 auto;
+/* CSS Snap Carousel */
+.details__carousel {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  gap: 1.5rem;
+  padding: 3rem 3rem 4rem;
+  max-width: 100%;
+  scrollbar-width: none;
 }
 
-/* Offset the second column downward for stagger */
-.details__grid .details__item:nth-child(even) {
-  margin-top: 4rem;
+.details__carousel::-webkit-scrollbar {
+  display: none;
 }
 
 .details__item {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.details__item.is-visible {
-  opacity: 1;
-  transform: translateY(0);
+  flex: 0 0 80%;
+  max-width: 80%;
+  scroll-snap-align: center;
 }
 
 .details__item-img {
@@ -751,17 +746,9 @@ a {
 
 .details__item-img img {
   width: 100%;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
   transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-/* Tall items get portrait ratio, short items get landscape */
-.details__item--tall .details__item-img img {
-  aspect-ratio: 3 / 4;
-}
-
-.details__item--short .details__item-img img {
-  aspect-ratio: 4 / 3;
 }
 
 .details__item:hover .details__item-img img {
@@ -1017,13 +1004,14 @@ a {
    RESPONSIVE -- TABLET
    ============================================ */
 @media (max-width: 1024px) {
-  .details__grid {
-    gap: 1.5rem;
-    padding: 3rem 2rem 5rem;
+  .details__carousel {
+    gap: 1.2rem;
+    padding: 3rem 2rem 4rem;
   }
 
-  .details__grid .details__item:nth-child(even) {
-    margin-top: 3rem;
+  .details__item {
+    flex: 0 0 70%;
+    max-width: 70%;
   }
 
   .experience__counter {
@@ -1168,14 +1156,14 @@ a {
     font-size: 0.72rem;
   }
 
-  .details__grid {
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
-    padding: 2rem 1.5rem 4rem;
+  .details__carousel {
+    gap: 1rem;
+    padding: 2rem 1.5rem 3rem;
   }
 
-  .details__grid .details__item:nth-child(even) {
-    margin-top: 0;
+  .details__item {
+    flex: 0 0 85%;
+    max-width: 85%;
   }
 
   .details__item-caption {
@@ -1183,9 +1171,8 @@ a {
     margin-top: 0.8rem;
   }
 
-  /* All images use same ratio in single column */
-  .details__item--tall .details__item-img img,
-  .details__item--short .details__item-img img {
+  /* Consistent ratio in carousel */
+  .details__item-img img {
     aspect-ratio: 4 / 3;
   }
 
