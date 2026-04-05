@@ -738,14 +738,12 @@ a {
    ============================================ */
 .scene-location {
   position: relative;
-  min-height: 100vh;
-  min-height: -webkit-fill-available;
+  height: 85vh;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
   background: #0a0a09;
-  margin-top: -1px;
 }
 
 .location__image-wrap {
@@ -808,37 +806,9 @@ a {
   letter-spacing: 0.03em;
 }
 
-/* Staggered line reveals for location text -- opacity only for perf */
+/* Location text -- no JS-driven animation, just visible */
 .location__reveal-line {
   display: inline-block;
-  opacity: 0;
-  transition: opacity 1s ease;
-  transition-delay: calc(var(--rl) * 0.25s);
-}
-
-.scene-location.is-visible .location__reveal-line {
-  opacity: 1;
-}
-
-
-/* ============================================
-   FULL-BLEED IMAGES
-   Visual breath between sections
-   ============================================ */
-.scene-fullbleed {
-  background: #0a0a09;
-}
-
-.fullbleed__image {
-  width: 100%;
-  overflow: hidden;
-}
-
-.fullbleed__image img {
-  width: 100%;
-  height: auto;
-  display: block;
-  object-fit: cover;
 }
 
 

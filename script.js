@@ -181,8 +181,7 @@
   function initRevealObservers() {
     // Section-level reveals
     var revealTargets = [
-      '.details__intro',
-      '.scene-location'
+      '.details__intro'
     ];
 
     var sectionObserver = new IntersectionObserver(function (entries) {
