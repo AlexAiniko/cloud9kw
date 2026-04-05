@@ -1,6 +1,7 @@
 /* ============================================
    Cloud 9 Key West -- Immersive Scroll Experience
    Pure vanilla JS. No dependencies.
+   Bold animations, mobile-optimized.
    ============================================ */
 
 (function () {
@@ -35,13 +36,11 @@
       var vh = window.innerHeight;
 
       if (scrollY < vh * 1.5) {
-        // Subtle zoom in + upward drift as user scrolls away
         var progress = scrollY / vh;
         var scale = 1.05 + progress * 0.08;
         var translateY = progress * -30;
         image.style.transform = 'scale(' + scale + ') translate3d(0, ' + translateY + 'px, 0)';
 
-        // Fade out content and scroll cue
         if (content) {
           var fade = Math.max(0, 1 - progress * 1.8);
           content.style.opacity = fade;
@@ -71,6 +70,7 @@
     var slides = document.querySelectorAll('.experience__slide');
     var progressBar = document.querySelector('.experience__progress-bar');
     var counterCurrent = document.querySelector('.experience__counter-current');
+    var watermark = document.querySelector('.experience__watermark');
 
     if (!section || !slides.length) return;
 
@@ -82,6 +82,15 @@
       var rect = section.getBoundingClientRect();
       var sectionTop = -rect.top;
       var sectionHeight = section.offsetHeight - window.innerHeight;
+
+      // Show/hide watermark when in the experience section
+      if (watermark) {
+        if (sectionTop > -100 && sectionTop < sectionHeight + 100) {
+          watermark.classList.add('is-visible');
+        } else {
+          watermark.classList.remove('is-visible');
+        }
+      }
 
       if (sectionTop < 0 || sectionTop > sectionHeight) {
         ticking = false;
@@ -96,7 +105,6 @@
       // Update progress bar
       if (progressBar) {
         var progressPercent = ((scrollProgress * totalSlides) % 1) * 100;
-        // On last slide, fill completely
         if (slideIndex === totalSlides - 1) {
           progressPercent = 100;
         }
@@ -155,13 +163,11 @@
       if (sectionTop < 0) sectionTop = 0;
       if (sectionTop > sectionHeight) sectionTop = sectionHeight;
 
-      // Calculate how far to translate the track
       var scrollProgress = sectionTop / sectionHeight;
 
-      // Total scrollable width = track width - viewport width
       var trackWidth = track.scrollWidth;
       var viewportWidth = window.innerWidth;
-      var maxTranslate = Math.max(0, trackWidth - viewportWidth + 60); // +60 for right padding
+      var maxTranslate = Math.max(0, trackWidth - viewportWidth + 60);
 
       var translateX = -scrollProgress * maxTranslate;
 
@@ -177,7 +183,6 @@
       }
     }, { passive: true });
 
-    // Also update on resize
     window.addEventListener('resize', function () {
       if (!ticking) {
         requestAnimationFrame(update);
@@ -193,18 +198,18 @@
   // INTERSECTION OBSERVER -- Reveal animations
   // ============================================
   function initRevealObservers() {
-    // Elements that get 'is-visible' class when entering viewport
+    // Section-level reveals
     var revealTargets = [
       '.details__intro',
       '.scene-location',
       '.scene-designer'
     ];
 
-    var observer = new IntersectionObserver(function (entries) {
+    var sectionObserver = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
           entry.target.classList.add('is-visible');
-          observer.unobserve(entry.target);
+          sectionObserver.unobserve(entry.target);
         }
       });
     }, {
@@ -214,8 +219,37 @@
 
     revealTargets.forEach(function (selector) {
       var el = document.querySelector(selector);
-      if (el) observer.observe(el);
+      if (el) sectionObserver.observe(el);
     });
+
+    // Detail items -- staggered reveal as they enter viewport
+    var detailItems = document.querySelectorAll('.details__item');
+    if (detailItems.length) {
+      var itemObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            // Stagger based on item index within current visible batch
+            var item = entry.target;
+            var delay = 0;
+            detailItems.forEach(function (el, idx) {
+              if (el === item) {
+                delay = idx * 0.08;
+              }
+            });
+            item.style.transitionDelay = delay + 's';
+            item.classList.add('is-visible');
+            itemObserver.unobserve(item);
+          }
+        });
+      }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -40px 0px'
+      });
+
+      detailItems.forEach(function (item) {
+        itemObserver.observe(item);
+      });
+    }
   }
 
 
@@ -223,8 +257,6 @@
   // LAZY LOADING -- Native + IntersectionObserver fallback
   // ============================================
   function initLazyLoad() {
-    // Modern browsers handle loading="lazy" natively.
-    // This is a safety net for older browsers.
     if ('loading' in HTMLImageElement.prototype) return;
 
     var lazyImages = document.querySelectorAll('img[loading="lazy"]');
@@ -255,7 +287,6 @@
   // (Only on desktop, non-reduced-motion)
   // ============================================
   function initSmoothMomentum() {
-    // Skip on mobile, touch devices, or reduced motion
     if (prefersReducedMotion) return;
     if ('ontouchstart' in window) return;
     if (window.innerWidth < 1024) return;
@@ -268,7 +299,6 @@
     function smoothStep() {
       currentScroll = lerp(currentScroll, targetScroll, ease);
 
-      // Stop animating when close enough
       if (Math.abs(currentScroll - targetScroll) < 0.5) {
         currentScroll = targetScroll;
         window.scrollTo(0, currentScroll);
@@ -292,13 +322,11 @@
       }
     }, { passive: false });
 
-    // Sync on resize
     window.addEventListener('resize', function () {
       currentScroll = window.scrollY;
       targetScroll = window.scrollY;
     }, { passive: true });
 
-    // Sync on programmatic scroll (e.g., clicking links)
     window.addEventListener('scroll', function () {
       if (!scrolling) {
         currentScroll = window.scrollY;
