@@ -29,6 +29,18 @@
     var scrollCue = document.querySelector('.arrival__scroll-cue');
     if (!image || prefersReducedMotion) return;
 
+    // Skip parallax on mobile -- causes scroll jank
+    var isMobile = 'ontouchstart' in window || window.innerWidth < 768;
+    if (isMobile) {
+      // Just fade the scroll cue without parallax
+      if (scrollCue) {
+        window.addEventListener('scroll', function () {
+          scrollCue.style.opacity = Math.max(0, 1 - (window.scrollY / window.innerHeight) * 3);
+        }, { passive: true });
+      }
+      return;
+    }
+
     var ticking = false;
 
     function update() {
@@ -247,58 +259,7 @@
   }
 
 
-  // ============================================
-  // SMOOTH MOMENTUM -- Optional custom smooth scroll
-  // (Only on desktop, non-reduced-motion)
-  // ============================================
-  function initSmoothMomentum() {
-    if (prefersReducedMotion) return;
-    if ('ontouchstart' in window) return;
-    if (window.innerWidth < 1024) return;
-
-    var currentScroll = window.scrollY;
-    var targetScroll = window.scrollY;
-    var scrolling = false;
-    var ease = 0.09;
-
-    function smoothStep() {
-      currentScroll = lerp(currentScroll, targetScroll, ease);
-
-      if (Math.abs(currentScroll - targetScroll) < 0.5) {
-        currentScroll = targetScroll;
-        window.scrollTo(0, currentScroll);
-        scrolling = false;
-        return;
-      }
-
-      window.scrollTo(0, currentScroll);
-      requestAnimationFrame(smoothStep);
-    }
-
-    window.addEventListener('wheel', function (e) {
-      e.preventDefault();
-      targetScroll += e.deltaY;
-      targetScroll = clamp(targetScroll, 0, document.body.scrollHeight - window.innerHeight);
-
-      if (!scrolling) {
-        scrolling = true;
-        currentScroll = window.scrollY;
-        requestAnimationFrame(smoothStep);
-      }
-    }, { passive: false });
-
-    window.addEventListener('resize', function () {
-      currentScroll = window.scrollY;
-      targetScroll = window.scrollY;
-    }, { passive: true });
-
-    window.addEventListener('scroll', function () {
-      if (!scrolling) {
-        currentScroll = window.scrollY;
-        targetScroll = window.scrollY;
-      }
-    }, { passive: true });
-  }
+  // Smooth momentum removed -- was causing scroll conflicts and jank
 
 
   // ============================================
@@ -309,7 +270,7 @@
     initExperienceSlideshow();
     initRevealObservers();
     initLazyLoad();
-    initSmoothMomentum();
+    // initSmoothMomentum removed
   }
 
   if (document.readyState === 'loading') {

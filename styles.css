@@ -116,7 +116,7 @@ a {
   height: 100%;
   object-fit: cover;
   object-position: center center;
-  will-change: transform, opacity;
+  /* will-change removed for mobile perf */
   transform: scale(1.12);
   opacity: 0;
   animation: arrivalImageReveal 3s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
@@ -186,7 +186,7 @@ a {
   display: inline-block;
   opacity: 0;
   transform: translateY(110%) rotateX(-40deg);
-  will-change: transform, opacity;
+  /* will-change removed for mobile perf */
   animation: letterReveal 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   animation-delay: calc(0.7s + var(--i) * 0.07s);
 }
@@ -355,7 +355,7 @@ a {
   line-height: 0.85;
   opacity: 0;
   transition: opacity 1.2s ease;
-  will-change: opacity;
+  /* will-change removed for mobile perf */
   mix-blend-mode: overlay;
 }
 
@@ -446,7 +446,7 @@ a {
   height: 100%;
   object-fit: cover;
   object-position: center center;
-  will-change: transform;
+  /* will-change removed for mobile perf */
   transform: scale(1.04);
   transition: transform 8s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -624,7 +624,7 @@ a {
   width: 0%;
   background: linear-gradient(90deg, rgba(232, 213, 176, 0.4) 0%, rgba(250, 249, 246, 0.6) 100%);
   transition: width 0.3s ease;
-  will-change: width;
+  /* will-change removed for mobile perf */
   box-shadow: 0 0 12px rgba(232, 213, 176, 0.3);
 }
 
