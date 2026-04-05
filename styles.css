@@ -455,45 +455,6 @@ a {
   transform: scale(1.0);
 }
 
-/* Caption overlay */
-.experience__caption {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 6rem 3rem 3.5rem;
-  background: linear-gradient(0deg, rgba(10, 10, 9, 0.6) 0%, rgba(10, 10, 9, 0.0) 100%);
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  opacity: 0;
-  transform: translateY(12px);
-  transition: opacity 0.7s ease 0.15s, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.15s;
-}
-
-.experience__slide.is-active .experience__caption {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.experience__caption-label {
-  font-family: 'Outfit', sans-serif;
-  font-size: 0.68rem;
-  font-weight: 400;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: rgba(250, 249, 246, 0.5);
-}
-
-.experience__caption-text {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(1.5rem, 2.8vw, 2.2rem);
-  font-weight: 300;
-  font-style: italic;
-  color: rgba(250, 249, 246, 0.85);
-  line-height: 1.3;
-}
-
 /* Large editorial overlay text -- clip-path reveal animation */
 .experience__overlay-text {
   position: absolute;
@@ -861,95 +822,23 @@ a {
 
 
 /* ============================================
-   SCENE 5: THE DESIGNER -- Karen Lockwood
+   FULL-BLEED IMAGES
+   Visual breath between sections
    ============================================ */
-.scene-designer {
-  padding: 8rem 3rem;
-  background: #faf9f6;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+.scene-fullbleed {
+  background: #0a0a09;
 }
 
-.designer__content {
-  max-width: 580px;
-  opacity: 0;
-  transform: none;
-  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+.fullbleed__image {
+  width: 100%;
+  overflow: hidden;
 }
 
-.scene-designer.is-visible .designer__content {
-  opacity: 1;
-}
-
-.designer__text {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(1.4rem, 2.2vw, 1.7rem);
-  font-weight: 300;
-  font-style: italic;
-  color: #6a6a6a;
-  line-height: 1.65;
-  letter-spacing: 0.01em;
-}
-
-.designer__profile {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.5rem;
-  margin-top: 3rem;
-  padding-top: 2.5rem;
-  border-top: 1px solid rgba(44, 44, 42, 0.08);
-}
-
-.designer__headshot {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  background: #e8e6e1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.designer__initials {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.6rem;
-  font-weight: 400;
-  color: #999;
-  letter-spacing: 0.05em;
-  user-select: none;
-}
-
-.designer__info {
-  text-align: center;
-}
-
-.designer__credit {
-  font-family: 'Outfit', sans-serif;
-  font-size: 0.72rem;
-  font-weight: 400;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: #2c2c2a;
-}
-
-.designer__contact {
-  display: inline-block;
-  margin-top: 0.5rem;
-  font-family: 'Outfit', sans-serif;
-  font-size: 0.65rem;
-  font-weight: 300;
-  letter-spacing: 0.12em;
-  color: #aaa;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.designer__contact:hover {
-  color: #6a6a6a;
+.fullbleed__image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
 }
 
 
@@ -957,15 +846,41 @@ a {
    FOOTER
    ============================================ */
 .site-footer {
-  padding: 4rem 3rem 3rem;
+  position: relative;
+  padding: 6rem 3rem;
   background: #faf9f6;
   text-align: center;
-  border-top: 1px solid rgba(44, 44, 42, 0.08);
+  overflow: hidden;
+}
+
+.footer__bg-image {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.footer__bg-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  opacity: 0.09;
+  filter: grayscale(100%);
+}
+
+.footer__inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
 }
 
 .footer__name {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 1.4rem;
+  font-size: 2rem;
   font-weight: 300;
   letter-spacing: 0.06em;
   color: #2c2c2a;
@@ -974,17 +889,48 @@ a {
 
 .footer__location {
   font-family: 'Outfit', sans-serif;
-  font-size: 0.78rem;
+  font-size: 0.72rem;
   font-weight: 300;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.3em;
   text-transform: uppercase;
   color: #999;
-  margin-bottom: 0.5rem;
+}
+
+.footer__divider {
+  width: 60px;
+  height: 1px;
+  background: rgba(44, 44, 42, 0.15);
+  margin: 1.8rem 0;
+}
+
+.footer__designer {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 400;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #6a6a6a;
+}
+
+.footer__contact {
+  display: inline-block;
+  margin-top: 0.4rem;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.62rem;
+  font-weight: 300;
+  letter-spacing: 0.12em;
+  color: #aaa;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer__contact:hover {
+  color: #6a6a6a;
 }
 
 .footer__manager {
   font-family: 'Outfit', sans-serif;
-  font-size: 0.68rem;
+  font-size: 0.62rem;
   font-weight: 300;
   letter-spacing: 0.15em;
   color: #bbb;
@@ -1008,10 +954,6 @@ a {
   .experience__counter {
     top: 1.5rem;
     right: 1.5rem;
-  }
-
-  .experience__caption {
-    padding: 5rem 2rem 2.5rem;
   }
 
   .experience__overlay-line {
@@ -1065,19 +1007,6 @@ a {
   /* ---- SLIDESHOW ---- */
   .scene-experience {
     height: 520vh;
-  }
-
-  .experience__caption {
-    padding: 5rem 1.5rem 2.2rem;
-  }
-
-  .experience__caption-label {
-    font-size: 0.72rem;
-    letter-spacing: 0.25em;
-  }
-
-  .experience__caption-text {
-    font-size: clamp(1.3rem, 5vw, 1.8rem);
   }
 
   .experience__counter {
@@ -1200,44 +1129,17 @@ a {
     line-height: 1.6;
   }
 
-  /* ---- DESIGNER ---- */
-  .scene-designer {
-    padding: 5rem 1.5rem;
-  }
-
-  .designer__text {
-    font-size: clamp(1.3rem, 5vw, 1.6rem);
-  }
-
-  .designer__profile {
-    margin-top: 2.5rem;
-    padding-top: 2rem;
-  }
-
-  .designer__headshot {
-    width: 68px;
-    height: 68px;
-  }
-
-  .designer__initials {
-    font-size: 1.4rem;
-  }
-
   /* ---- FOOTER ---- */
   .site-footer {
-    padding: 3rem 1.5rem 2rem;
+    padding: 4rem 1.5rem;
   }
 
   .footer__name {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
   }
 
-  .footer__location {
-    font-size: 0.82rem;
-  }
-
-  .footer__manager {
-    font-size: 0.72rem;
+  .footer__divider {
+    margin: 1.4rem 0;
   }
 }
 

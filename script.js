@@ -182,8 +182,7 @@
     // Section-level reveals
     var revealTargets = [
       '.details__intro',
-      '.scene-location',
-      '.scene-designer'
+      '.scene-location'
     ];
 
     var sectionObserver = new IntersectionObserver(function (entries) {

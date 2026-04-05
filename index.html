@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cloud 9 | Key West</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' font-family='serif'>9</text></svg>">
   <meta name="description" content="Cloud 9. A visual experience of a thoughtfully restored retreat in Old Town Key West.">
 
   <!-- Open Graph -->
@@ -21,7 +22,7 @@
   <link rel="preload" as="image" href="images/entrance-through-doors.jpg">
 
   <!-- Styles -->
-  <link rel="stylesheet" href="styles.css?v=12">
+  <link rel="stylesheet" href="styles.css?v=13">
 </head>
 <body>
 
@@ -84,10 +85,6 @@
             <span class="experience__overlay-line experience__overlay-line--light">Leave the world</span>
             <span class="experience__overlay-line experience__overlay-line--light">behind.</span>
           </div>
-          <div class="experience__caption">
-            <span class="experience__caption-label">The Courtyard</span>
-            <span class="experience__caption-text">Step through. Leave everything behind.</span>
-          </div>
         </div>
         <!-- Slide 1 : The Living Room -- TEXT BOTTOM, WHITE -->
         <div class="experience__slide experience__slide--bottom" data-slide="1">
@@ -97,10 +94,6 @@
             <span class="experience__overlay-line">from every</span>
             <span class="experience__overlay-line experience__overlay-line--light">direction.</span>
           </div>
-          <div class="experience__caption">
-            <span class="experience__caption-label">The Living Room</span>
-            <span class="experience__caption-text">Open, sunlit, dressed in white.</span>
-          </div>
         </div>
         <!-- Slide 2 : The Kitchen -- TEXT TOP, BLACK (bright image) -->
         <div class="experience__slide experience__slide--top experience__slide--dark-text" data-slide="2">
@@ -108,10 +101,6 @@
           <div class="experience__overlay-text">
             <span class="experience__overlay-line">Every detail,</span>
             <span class="experience__overlay-line experience__overlay-line--light">considered.</span>
-          </div>
-          <div class="experience__caption">
-            <span class="experience__caption-label">The Kitchen</span>
-            <span class="experience__caption-text">Gourmet finishes. Natural light from above.</span>
           </div>
         </div>
         <!-- Slide 3 : The Master Suite -- TEXT BOTTOM, BLACK (with overlay) -->
@@ -122,10 +111,6 @@
             <span class="experience__overlay-line">Open the doors.</span>
             <span class="experience__overlay-line experience__overlay-line--light">The pool</span>
             <span class="experience__overlay-line experience__overlay-line--light">is yours.</span>
-          </div>
-          <div class="experience__caption">
-            <span class="experience__caption-label">The Master Suite</span>
-            <span class="experience__caption-text">Wake up. Walk to the pool. That simple.</span>
           </div>
         </div>
       </div>
@@ -191,6 +176,43 @@
         </div>
         <span class="details__item-caption">512 Fleming Street</span>
       </div>
+      <div class="details__item">
+        <div class="details__item-img">
+          <img src="images/scurto-425.jpg" alt="Private courtyard pool with loungers and umbrellas surrounded by lush tropical palms" loading="lazy">
+        </div>
+        <span class="details__item-caption">Poolside, all day</span>
+      </div>
+      <div class="details__item">
+        <div class="details__item-img">
+          <img src="images/scurto-442.jpg" alt="Master bedroom headboard detail with colorful art and patterned accent pillows" loading="lazy">
+        </div>
+        <span class="details__item-caption">Art in every room</span>
+      </div>
+      <div class="details__item">
+        <div class="details__item-img">
+          <img src="images/scurto-432.jpg" alt="Upper-level balcony porch with white railings overlooking tropical canopy" loading="lazy">
+        </div>
+        <span class="details__item-caption">The upper porch</span>
+      </div>
+      <div class="details__item">
+        <div class="details__item-img">
+          <img src="images/scurto-447.jpg" alt="Second bedroom suite with white linens, louvered doors, and garden-green accents" loading="lazy">
+        </div>
+        <span class="details__item-caption">The garden suite</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       FULL-BLEED IMAGES
+       Visual breath between details and location
+       ============================================ -->
+  <section class="scene-fullbleed" aria-label="Property gallery">
+    <div class="fullbleed__image">
+      <img src="images/scurto-421.jpg" alt="Elevated view of Cloud 9 pool and white two-story cottage framed by tropical palms" loading="lazy">
+    </div>
+    <div class="fullbleed__image">
+      <img src="images/scurto-457.jpg" alt="Pool water feature and mosaic tile wall nestled among dense tropical plantings" loading="lazy">
     </div>
   </section>
 
@@ -215,34 +237,25 @@
   </section>
 
   <!-- ============================================
-       SCENE 5: THE DESIGNER -- Karen Lockwood
-       ============================================ -->
-  <section class="scene-designer" id="designer" aria-label="Design credits">
-    <div class="designer__content">
-      <p class="designer__text">Classic Key West architecture reimagined with modern comfort and timeless style.</p>
-      <div class="designer__profile">
-        <div class="designer__headshot" aria-label="Karen Lockwood">
-          <span class="designer__initials">KL</span>
-        </div>
-        <div class="designer__info">
-          <p class="designer__credit">Designed by Karen Lockwood</p>
-          <a href="mailto:karen@lockwood.net" class="designer__contact">karen@lockwood.net</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================
        FOOTER
        ============================================ -->
   <footer class="site-footer" aria-label="Site footer">
-    <p class="footer__name">Cloud 9</p>
-    <p class="footer__location">Key West, Florida</p>
-    <p class="footer__manager">Historic Key West Vacation Rentals</p>
+    <div class="footer__bg-image" aria-hidden="true">
+      <img src="images/scurto-427.jpg" alt="" loading="lazy">
+    </div>
+    <div class="footer__inner">
+      <p class="footer__name">Cloud 9</p>
+      <p class="footer__location">Key West, Florida</p>
+      <div class="footer__divider"></div>
+      <p class="footer__designer">Designed by Karen Lockwood</p>
+      <a href="mailto:karen@lockwood.net" class="footer__contact">karen@lockwood.net</a>
+      <div class="footer__divider"></div>
+      <p class="footer__manager">Historic Key West Vacation Rentals</p>
+    </div>
   </footer>
 
   <!-- Scripts -->
-  <script src="script.js?v=12"></script>
+  <script src="script.js?v=13"></script>
 
 </body>
 </html>
