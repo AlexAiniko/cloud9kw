@@ -315,7 +315,7 @@ a {
    ============================================ */
 .scene-experience {
   position: relative;
-  height: 580vh;
+  height: 680vh;
   background: #0a0a09;
 }
 
@@ -379,14 +379,25 @@ a {
   inset: 0;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
-              visibility 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity;
+  transition: opacity 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              visibility 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: opacity, transform;
+  transform: scale(1.03);
 }
 
 .experience__slide.is-active {
   opacity: 1;
   visibility: visible;
+  transform: scale(1);
+}
+
+.experience__slide.is-leaving {
+  opacity: 0;
+  transform: scale(0.97);
+  transition: opacity 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              visibility 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .experience__slide img {
@@ -460,11 +471,11 @@ a {
 .experience__overlay-line {
   display: block;
   font-family: 'Cormorant Garamond', 'Georgia', serif;
-  font-size: clamp(2.8rem, 6.5vw, 7rem);
-  font-weight: 300;
-  line-height: 1.05;
-  letter-spacing: 0.02em;
-  color: rgba(250, 249, 246, 0.88);
+  font-size: clamp(3.4rem, 8vw, 9rem);
+  font-weight: 500;
+  line-height: 1.0;
+  letter-spacing: 0.01em;
+  color: rgba(250, 249, 246, 0.92);
   text-shadow:
     0 2px 30px rgba(10, 10, 9, 0.5),
     0 0 80px rgba(10, 10, 9, 0.3);
@@ -894,7 +905,7 @@ a {
   }
 
   .experience__overlay-line {
-    font-size: clamp(2.2rem, 5vw, 4.5rem);
+    font-size: clamp(2.8rem, 6.5vw, 5.5rem);
   }
 
   .experience__overlay-text {
@@ -937,7 +948,7 @@ a {
 
   /* ---- SLIDESHOW ---- */
   .scene-experience {
-    height: 420vh;
+    height: 520vh;
   }
 
   .experience__caption {
@@ -973,7 +984,8 @@ a {
   }
 
   .experience__overlay-line {
-    font-size: clamp(2.4rem, 10vw, 4rem);
+    font-size: clamp(3rem, 12vw, 5rem);
+    font-weight: 500;
     text-shadow:
       0 2px 20px rgba(10, 10, 9, 0.8),
       0 0 60px rgba(10, 10, 9, 0.6);
@@ -1086,7 +1098,8 @@ a {
   }
 
   .experience__overlay-line {
-    font-size: clamp(2rem, 11vw, 3.2rem);
+    font-size: clamp(2.6rem, 13vw, 4rem);
+    font-weight: 500;
   }
 
   .location__heading {

@@ -113,13 +113,23 @@
 
       // Switch slide if changed
       if (slideIndex !== currentSlide) {
+        var previousSlide = currentSlide;
         currentSlide = slideIndex;
 
         slides.forEach(function (slide, i) {
           if (i === slideIndex) {
+            slide.classList.remove('is-leaving');
             slide.classList.add('is-active');
+          } else if (i === previousSlide) {
+            slide.classList.remove('is-active');
+            slide.classList.add('is-leaving');
+            // Remove is-leaving after transition completes
+            setTimeout(function () {
+              slide.classList.remove('is-leaving');
+            }, 1400);
           } else {
             slide.classList.remove('is-active');
+            slide.classList.remove('is-leaving');
           }
         });
 
