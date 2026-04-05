@@ -176,6 +176,30 @@
 
 
   // ============================================
+  // FLOATING NAV -- Show/hide based on scroll
+  // ============================================
+  function initFloatingNav() {
+    var nav = document.getElementById('floatingNav');
+    var arrival = document.querySelector('.scene-arrival');
+    if (!nav || !arrival) return;
+
+    var navObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          nav.classList.remove('is-visible');
+        } else {
+          nav.classList.add('is-visible');
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
+
+    navObserver.observe(arrival);
+  }
+
+
+  // ============================================
   // INTERSECTION OBSERVER -- Reveal animations
   // ============================================
   function initRevealObservers() {
@@ -225,6 +249,62 @@
         itemObserver.observe(item);
       });
     }
+
+    // --- Vision section reveal ---
+    var visionSection = document.querySelector('.scene-vision');
+    if (visionSection) {
+      var visionReveals = document.querySelectorAll('.vision__reveal');
+      var visionObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            visionReveals.forEach(function (el) {
+              el.classList.add('is-visible');
+            });
+            visionObserver.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.15
+      });
+      visionObserver.observe(visionSection);
+    }
+
+    // --- Materials reveal ---
+    var materialsSection = document.querySelector('.details__materials');
+    if (materialsSection) {
+      var materialsObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            materialsObserver.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.15
+      });
+      materialsObserver.observe(materialsSection);
+    }
+
+    // --- Location section reveal ---
+    var locationSection = document.querySelector('.scene-location');
+    if (locationSection) {
+      var locationLines = document.querySelectorAll('.location__reveal-line');
+      var locationObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            locationLines.forEach(function (line) {
+              var rl = parseInt(line.style.getPropertyValue('--rl') || '0', 10);
+              line.style.transitionDelay = (rl * 0.15) + 's';
+              line.classList.add('is-visible');
+            });
+            locationObserver.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.2
+      });
+      locationObserver.observe(locationSection);
+    }
   }
 
 
@@ -266,9 +346,9 @@
   function init() {
     initArrivalParallax();
     initExperienceSlideshow();
+    initFloatingNav();
     initRevealObservers();
     initLazyLoad();
-    // initSmoothMomentum removed
   }
 
   if (document.readyState === 'loading') {

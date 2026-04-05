@@ -5,13 +5,45 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cloud 9 | Key West</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' font-family='serif'>9</text></svg>">
-  <meta name="description" content="Cloud 9. A visual experience of a thoughtfully restored retreat in Old Town Key West.">
+  <meta name="description" content="Cloud 9. A designer showcase by Karen Lockwood -- a thoughtfully restored retreat in Old Town Key West, Florida.">
 
   <!-- Open Graph -->
   <meta property="og:title" content="Cloud 9 | Key West">
-  <meta property="og:description" content="A visual experience of a designer retreat in Old Town Key West.">
-  <meta property="og:image" content="images/hero-pool-exterior.jpg">
+  <meta property="og:description" content="A designer showcase by Karen Lockwood -- a thoughtfully restored retreat in Old Town Key West, Florida.">
+  <meta property="og:image" content="https://cloud9kwdesign.com/images/hero-pool-exterior.jpg">
+  <meta property="og:url" content="https://cloud9kwdesign.com">
   <meta property="og:type" content="website">
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "name": "Cloud 9 Key West",
+    "description": "A designer showcase of a thoughtfully restored retreat in Old Town Key West, designed by Karen Lockwood.",
+    "url": "https://cloud9kwdesign.com",
+    "image": "https://cloud9kwdesign.com/images/hero-pool-exterior.jpg",
+    "creator": {
+      "@type": "Person",
+      "name": "Karen Lockwood",
+      "jobTitle": "Interior Designer",
+      "email": "karen@lockwood.net"
+    },
+    "locationCreated": {
+      "@type": "Place",
+      "name": "Old Town Key West",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "512 Fleming Street",
+        "addressLocality": "Key West",
+        "addressRegion": "FL",
+        "addressCountry": "US"
+      }
+    },
+    "genre": "Interior Design",
+    "keywords": "interior design, Key West, luxury, designer showcase, Karen Lockwood"
+  }
+  </script>
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,9 +54,19 @@
   <link rel="preload" as="image" href="images/entrance-through-doors.jpg">
 
   <!-- Styles -->
-  <link rel="stylesheet" href="styles.css?v=14">
+  <link rel="stylesheet" href="styles.css?v=15">
 </head>
 <body>
+
+  <!-- ============================================
+       FLOATING NAV
+       ============================================ -->
+  <nav class="floating-nav" id="floatingNav" aria-label="Section navigation">
+    <a href="#experience" class="floating-nav__link">Experience</a>
+    <a href="#vision" class="floating-nav__link">The Vision</a>
+    <a href="#details" class="floating-nav__link">Details</a>
+    <a href="mailto:karen@lockwood.net" class="floating-nav__link">Contact</a>
+  </nav>
 
   <!-- ============================================
        SCENE 1: THE ARRIVAL
@@ -32,7 +74,7 @@
        ============================================ -->
   <section class="scene-arrival" id="top" aria-label="Cloud 9 arrival">
     <div class="arrival__image-wrap">
-      <img src="images/entrance-through-doors.jpg" alt="View through open black doors at 512 Fleming Street revealing a sunlit courtyard with brick pavers and tropical palms" class="arrival__image" fetchpriority="high">
+      <img src="images/entrance-through-doors.jpg" alt="View through open black doors at 512 Fleming Street revealing a sunlit courtyard with brick pavers and tropical palms" class="arrival__image" fetchpriority="high" width="1920" height="1280">
     </div>
     <div class="arrival__overlay"></div>
 
@@ -78,7 +120,7 @@
       <div class="experience__slides">
         <!-- Slide 0 : The Courtyard -- TEXT TOP, WHITE -->
         <div class="experience__slide experience__slide--top is-active" data-slide="0">
-          <img src="images/scurto-456.jpg" alt="Private courtyard pool viewed through ornate carved white doors, flanked by tropical palms and brick pavers" loading="lazy">
+          <img src="images/scurto-456.jpg" alt="Private courtyard pool viewed through ornate carved white doors, flanked by tropical palms and brick pavers" loading="lazy" width="1600" height="1200">
           <div class="experience__overlay-text">
             <span class="experience__overlay-line">Step through</span>
             <span class="experience__overlay-line">the gate.</span>
@@ -88,7 +130,7 @@
         </div>
         <!-- Slide 1 : The Living Room -- TEXT BOTTOM, WHITE -->
         <div class="experience__slide experience__slide--bottom" data-slide="1">
-          <img src="images/scurto-422.jpg" alt="Open-concept living space with white sectional sofa, coral pillows, skylights, and natural light flooding the room" loading="lazy">
+          <img src="images/scurto-422.jpg" alt="Open-concept living space with white sectional sofa, coral pillows, skylights, and natural light flooding the room" loading="lazy" width="1600" height="1200">
           <div class="experience__overlay-text">
             <span class="experience__overlay-line">Light pours in</span>
             <span class="experience__overlay-line">from every</span>
@@ -97,7 +139,7 @@
         </div>
         <!-- Slide 2 : The Kitchen -- TEXT TOP, BLACK (bright image) -->
         <div class="experience__slide experience__slide--top experience__slide--dark-text" data-slide="2">
-          <img src="images/scurto-434.jpg" alt="Bright galley kitchen with stainless steel appliances, white cabinetry, skylight, and garden window" loading="lazy">
+          <img src="images/scurto-434.jpg" alt="Bright galley kitchen with stainless steel appliances, white cabinetry, skylight, and garden window" loading="lazy" width="1600" height="1200">
           <div class="experience__overlay-text">
             <span class="experience__overlay-line">Every detail,</span>
             <span class="experience__overlay-line experience__overlay-line--light">considered.</span>
@@ -106,11 +148,37 @@
         <!-- Slide 3 : The Master Suite -- TEXT BOTTOM, BLACK (with overlay) -->
         <div class="experience__slide experience__slide--bottom experience__slide--dark-text" data-slide="3">
           <div class="experience__slide-overlay"></div>
-          <img src="images/scurto-443.jpg" alt="Master suite with king bed, colorful art above headboard, French doors open to a tropical garden" loading="lazy">
+          <img src="images/scurto-443.jpg" alt="Master suite with king bed, colorful art above headboard, French doors open to a tropical garden" loading="lazy" width="1600" height="1200">
           <div class="experience__overlay-text">
             <span class="experience__overlay-line">Open the doors.</span>
             <span class="experience__overlay-line experience__overlay-line--light">The pool</span>
             <span class="experience__overlay-line experience__overlay-line--light">is yours.</span>
+          </div>
+        </div>
+        <!-- Slide 4 : The Garden Suite -- TEXT BOTTOM, WHITE -->
+        <div class="experience__slide experience__slide--bottom" data-slide="4">
+          <img src="images/scurto-447.jpg" alt="Second bedroom suite with white linens, louvered doors, and garden-green accents" loading="lazy" width="1600" height="1200">
+          <div class="experience__overlay-text">
+            <span class="experience__overlay-line">Where morning light</span>
+            <span class="experience__overlay-line experience__overlay-line--light">meets cool tile.</span>
+          </div>
+        </div>
+        <!-- Slide 5 : The Upper Porch -- TEXT TOP, WHITE -->
+        <div class="experience__slide experience__slide--top" data-slide="5">
+          <img src="images/scurto-432.jpg" alt="Upper-level balcony porch with white railings overlooking tropical canopy" loading="lazy" width="1600" height="1200">
+          <div class="experience__overlay-text">
+            <span class="experience__overlay-line">Above it all.</span>
+            <span class="experience__overlay-line experience__overlay-line--light">The palms, the pool,</span>
+            <span class="experience__overlay-line experience__overlay-line--light">the quiet.</span>
+          </div>
+        </div>
+        <!-- Slide 6 : The Porch Swing -- TEXT BOTTOM, WHITE -->
+        <div class="experience__slide experience__slide--bottom" data-slide="6">
+          <img src="images/scurto-451.jpg" alt="Covered side porch with a white wooden swing bench flanked by tropical palms" loading="lazy" width="1600" height="1200">
+          <div class="experience__overlay-text">
+            <span class="experience__overlay-line">A swing. A breeze.</span>
+            <span class="experience__overlay-line experience__overlay-line--light">Nothing else</span>
+            <span class="experience__overlay-line experience__overlay-line--light">required.</span>
           </div>
         </div>
       </div>
@@ -124,8 +192,32 @@
       <div class="experience__counter">
         <span class="experience__counter-current">01</span>
         <span class="experience__counter-sep"></span>
-        <span class="experience__counter-total">04</span>
+        <span class="experience__counter-total">07</span>
       </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       SCENE 2.5: THE VISION
+       Designer philosophy -- the most important addition
+       ============================================ -->
+  <section class="scene-vision" id="vision" aria-label="Design philosophy">
+    <div class="vision__bg-image" aria-hidden="true">
+      <img src="images/scurto-427.jpg" alt="" loading="lazy" width="1600" height="1200">
+    </div>
+    <div class="vision__overlay"></div>
+    <div class="vision__content">
+      <span class="vision__label vision__reveal">The Vision</span>
+      <blockquote class="vision__quote vision__reveal">
+        "What happens when you let the light decide?"
+      </blockquote>
+      <p class="vision__body vision__reveal">
+        Cloud Nine began as a question. Karen Lockwood stripped back decades of renovation to reveal the bones of a 1920s Key West cottage, then rebuilt around what the house already knew -- that every room should open to the sky, the garden, or the water.
+      </p>
+      <p class="vision__body vision__reveal">
+        Fourteen sets of French doors. Original heart pine floors, sanded and sealed but never stained. Walls painted in a single shade of Cloud White, so the architecture speaks for itself. Nothing here is accidental. Nothing here is loud. Every choice serves the same idea: let the outside in.
+      </p>
+      <span class="vision__attribution vision__reveal">-- Karen Lockwood, Interior Designer</span>
     </div>
   </section>
 
@@ -139,76 +231,83 @@
       <h2 class="details__heading details__heading--animated">Curated, not decorated</h2>
     </div>
 
+    <div class="details__materials">
+      <span class="details__material-item">Original heart pine floors, restored</span>
+      <span class="details__material-item">French doors throughout -- 14 in total</span>
+      <span class="details__material-item">Custom ironwork gecko gate by local artisan</span>
+      <span class="details__material-item">Every wall painted Cloud White -- one shade, everywhere</span>
+    </div>
+
     <div class="details__carousel">
       <div class="details__item">
         <div class="details__item-img">
-          <img src="images/scurto-453.jpg" alt="Signature gecko gate with custom iron tropical leaf and gecko metalwork bearing address 512" loading="lazy">
+          <img src="images/scurto-453.jpg" alt="Signature gecko gate with custom iron tropical leaf and gecko metalwork bearing address 512" loading="lazy" width="1600" height="1200">
         </div>
         <span class="details__item-caption">The gecko gate</span>
       </div>
       <div class="details__item">
         <div class="details__item-img">
-          <img src="images/scurto-431.jpg" alt="Open-plan living and dining with reclaimed wood table, white furnishings, and vaulted ceilings" loading="lazy">
+          <img src="images/scurto-431.jpg" alt="Open-plan living and dining with reclaimed wood table, white furnishings, and vaulted ceilings" loading="lazy" width="1600" height="1200">
         </div>
         <span class="details__item-caption">Hardwood underfoot</span>
       </div>
       <div class="details__item">
         <div class="details__item-img">
-          <img src="images/scurto-455.jpg" alt="Open entrance doors revealing the pool courtyard beyond, framed by the terracotta facade" loading="lazy">
+          <img src="images/scurto-455.jpg" alt="Open entrance doors revealing the pool courtyard beyond, framed by the terracotta facade" loading="lazy" width="1600" height="1200">
         </div>
         <span class="details__item-caption">French doors to the courtyard</span>
       </div>
       <div class="details__item">
         <div class="details__item-img">
-          <img src="images/scurto-451.jpg" alt="Covered side porch with a white wooden swing bench flanked by tropical palms" loading="lazy">
+          <img src="images/scurto-451.jpg" alt="Covered side porch with a white wooden swing bench flanked by tropical palms" loading="lazy" width="1600" height="1200">
         </div>
         <span class="details__item-caption">A porch swing for two</span>
       </div>
       <div class="details__item">
         <div class="details__item-img">
-          <img src="images/pool-tropical.jpg" alt="Pool water feature with mosaic tile wall surrounded by dense tropical plantings" loading="lazy">
+          <img src="images/pool-tropical.jpg" alt="Pool water feature with mosaic tile wall surrounded by dense tropical plantings" loading="lazy" width="1600" height="1200">
         </div>
         <span class="details__item-caption">Water and stone</span>
       </div>
       <div class="details__item">
         <div class="details__item-img">
-          <img src="images/entrance-exterior.jpg" alt="Street view of 512 Fleming showing the terracotta entrance with gecko gate between Old Town storefronts" loading="lazy">
+          <img src="images/entrance-exterior.jpg" alt="Street view of 512 Fleming showing the terracotta entrance with gecko gate between Old Town storefronts" loading="lazy" width="1600" height="1200">
         </div>
         <span class="details__item-caption">512 Fleming Street</span>
       </div>
       <div class="details__item">
         <div class="details__item-img">
-          <img src="images/scurto-425.jpg" alt="Private courtyard pool with loungers and umbrellas surrounded by lush tropical palms" loading="lazy">
+          <img src="images/scurto-425.jpg" alt="Private courtyard pool with loungers and umbrellas surrounded by lush tropical palms" loading="lazy" width="1600" height="1200">
         </div>
         <span class="details__item-caption">Poolside, all day</span>
       </div>
       <div class="details__item">
         <div class="details__item-img">
-          <img src="images/scurto-442.jpg" alt="Master bedroom headboard detail with colorful art and patterned accent pillows" loading="lazy">
+          <img src="images/scurto-442.jpg" alt="Master bedroom headboard detail with colorful art and patterned accent pillows" loading="lazy" width="1600" height="1200">
         </div>
         <span class="details__item-caption">Art in every room</span>
       </div>
       <div class="details__item">
         <div class="details__item-img">
-          <img src="images/scurto-432.jpg" alt="Upper-level balcony porch with white railings overlooking tropical canopy" loading="lazy">
+          <img src="images/scurto-432.jpg" alt="Upper-level balcony porch with white railings overlooking tropical canopy" loading="lazy" width="1600" height="1200">
         </div>
         <span class="details__item-caption">The upper porch</span>
       </div>
       <div class="details__item">
         <div class="details__item-img">
-          <img src="images/scurto-447.jpg" alt="Second bedroom suite with white linens, louvered doors, and garden-green accents" loading="lazy">
+          <img src="images/scurto-447.jpg" alt="Second bedroom suite with white linens, louvered doors, and garden-green accents" loading="lazy" width="1600" height="1200">
         </div>
         <span class="details__item-caption">The garden suite</span>
       </div>
       <div class="details__item">
         <div class="details__item-img">
-          <img src="images/scurto-421.jpg" alt="Elevated view of Cloud 9 pool and white two-story cottage framed by tropical palms" loading="lazy">
+          <img src="images/scurto-421.jpg" alt="Elevated view of Cloud 9 pool and white two-story cottage framed by tropical palms" loading="lazy" width="1600" height="1200">
         </div>
         <span class="details__item-caption">From above</span>
       </div>
       <div class="details__item">
         <div class="details__item-img">
-          <img src="images/scurto-457.jpg" alt="Pool water feature and mosaic tile wall nestled among dense tropical plantings" loading="lazy">
+          <img src="images/scurto-457.jpg" alt="Pool water feature and mosaic tile wall nestled among dense tropical plantings" loading="lazy" width="1600" height="1200">
         </div>
         <span class="details__item-caption">The water feature</span>
       </div>
@@ -221,7 +320,7 @@
        ============================================ -->
   <section class="scene-location" id="location" aria-label="Location">
     <div class="location__image-wrap">
-      <img src="images/hero-pool-exterior.jpg" alt="Cloud 9 white cottage exterior with private pool, upper balcony, and tropical garden at dusk" loading="lazy">
+      <img src="images/hero-pool-exterior.jpg" alt="Cloud 9 white cottage exterior with private pool, upper balcony, and tropical garden at dusk" loading="lazy" width="1920" height="1280">
     </div>
     <div class="location__overlay"></div>
     <div class="location__content">
@@ -240,21 +339,23 @@
        ============================================ -->
   <footer class="site-footer" aria-label="Site footer">
     <div class="footer__bg-image" aria-hidden="true">
-      <img src="images/scurto-427.jpg" alt="" loading="lazy">
+      <img src="images/scurto-427.jpg" alt="" loading="lazy" width="1600" height="1200">
     </div>
     <div class="footer__inner">
       <p class="footer__name">Cloud 9</p>
       <p class="footer__location">Key West, Florida</p>
       <div class="footer__divider"></div>
-      <p class="footer__designer">Designed by Karen Lockwood</p>
+      <p class="footer__designer-name">Karen Lockwood</p>
+      <p class="footer__designer-tagline">Interior Design / Key West, Florida</p>
       <a href="mailto:karen@lockwood.net" class="footer__contact">karen@lockwood.net</a>
       <div class="footer__divider"></div>
       <p class="footer__manager">Historic Key West Vacation Rentals</p>
+      <a href="#top" class="footer__back-to-top">Back to top</a>
     </div>
   </footer>
 
   <!-- Scripts -->
-  <script src="script.js?v=14"></script>
+  <script src="script.js?v=15"></script>
 
 </body>
 </html>
