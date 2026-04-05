@@ -367,6 +367,32 @@ a {
   user-select: none;
 }
 
+/* Designer credit in slideshow */
+.experience__designer-credit {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 3rem;
+  z-index: 4;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 1.4s ease 0.6s, transform 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.6s;
+}
+
+.experience__designer-credit.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.experience__designer-credit-text {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.62rem;
+  font-weight: 300;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(250, 249, 246, 0.25);
+}
+
 /* Slides */
 .experience__slides {
   position: relative;
@@ -620,12 +646,11 @@ a {
 
 /* ============================================
    SCENE 3: THE DETAILS
-   Horizontal-scroll gallery driven by vertical scroll
+   Staggered masonry grid with scroll reveals
    ============================================ */
 .scene-details {
   position: relative;
   background: #faf9f6;
-  height: 300vh;
 }
 
 .details__intro {
@@ -677,32 +702,26 @@ a {
   transition-delay: 0.25s;
 }
 
-/* Horizontal track (sticky) */
-.details__track-wrap {
-  position: sticky;
-  top: 0;
-  height: 100dvh;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
+/* Staggered masonry grid */
+.details__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  padding: 3rem 3rem 6rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.details__track {
-  display: flex;
-  gap: 2rem;
-  padding: 0 3rem;
-  will-change: transform;
+/* Offset the second column downward for stagger */
+.details__grid .details__item:nth-child(even) {
+  margin-top: 4rem;
 }
 
 .details__item {
-  flex: 0 0 auto;
-  width: 38vw;
-  min-width: 320px;
-  max-width: 560px;
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .details__item.is-visible {
@@ -717,9 +736,17 @@ a {
 
 .details__item-img img {
   width: 100%;
-  aspect-ratio: 4 / 5;
   object-fit: cover;
   transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Tall items get portrait ratio, short items get landscape */
+.details__item--tall .details__item-img img {
+  aspect-ratio: 3 / 4;
+}
+
+.details__item--short .details__item-img img {
+  aspect-ratio: 4 / 3;
 }
 
 .details__item:hover .details__item-img img {
@@ -848,8 +875,7 @@ a {
 
 
 /* ============================================
-   SCENE 5: THE DESIGNER
-   Minimal placeholder
+   SCENE 5: THE DESIGNER -- Karen Lockwood
    ============================================ */
 .scene-designer {
   padding: 8rem 3rem;
@@ -883,14 +909,63 @@ a {
   letter-spacing: 0.01em;
 }
 
+.designer__profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 3rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid rgba(44, 44, 42, 0.08);
+}
+
+.designer__headshot {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #e8e6e1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.designer__initials {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: #999;
+  letter-spacing: 0.05em;
+  user-select: none;
+}
+
+.designer__info {
+  text-align: center;
+}
+
 .designer__credit {
-  margin-top: 2rem;
   font-family: 'Outfit', sans-serif;
-  font-size: 0.7rem;
+  font-size: 0.72rem;
   font-weight: 400;
   letter-spacing: 0.25em;
   text-transform: uppercase;
-  color: #999;
+  color: #2c2c2a;
+}
+
+.designer__contact {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 300;
+  letter-spacing: 0.12em;
+  color: #aaa;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.designer__contact:hover {
+  color: #6a6a6a;
 }
 
 
@@ -936,9 +1011,13 @@ a {
    RESPONSIVE -- TABLET
    ============================================ */
 @media (max-width: 1024px) {
-  .details__item {
-    width: 50vw;
-    min-width: 280px;
+  .details__grid {
+    gap: 1.5rem;
+    padding: 3rem 2rem 5rem;
+  }
+
+  .details__grid .details__item:nth-child(even) {
+    margin-top: 3rem;
   }
 
   .experience__counter {
@@ -1065,10 +1144,6 @@ a {
   }
 
   /* ---- DETAILS ---- */
-  .scene-details {
-    height: 250vh;
-  }
-
   .details__intro {
     padding: 5rem 1.5rem 2rem;
   }
@@ -1081,20 +1156,36 @@ a {
     font-size: 0.72rem;
   }
 
-  .details__track {
-    padding: 0 1.5rem;
-    gap: 1.2rem;
+  .details__grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    padding: 2rem 1.5rem 4rem;
   }
 
-  .details__item {
-    width: 80vw;
-    min-width: 260px;
-    max-width: 380px;
+  .details__grid .details__item:nth-child(even) {
+    margin-top: 0;
   }
 
   .details__item-caption {
     font-size: 1.15rem;
     margin-top: 0.8rem;
+  }
+
+  /* All images use same ratio in single column */
+  .details__item--tall .details__item-img img,
+  .details__item--short .details__item-img img {
+    aspect-ratio: 4 / 3;
+  }
+
+  /* Designer credit in slideshow -- reposition for mobile */
+  .experience__designer-credit {
+    left: 1.5rem;
+    bottom: 2rem;
+  }
+
+  .experience__designer-credit-text {
+    font-size: 0.55rem;
+    letter-spacing: 0.22em;
   }
 
   /* ---- LOCATION ---- */
@@ -1126,6 +1217,20 @@ a {
 
   .designer__text {
     font-size: clamp(1.3rem, 5vw, 1.6rem);
+  }
+
+  .designer__profile {
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+  }
+
+  .designer__headshot {
+    width: 68px;
+    height: 68px;
+  }
+
+  .designer__initials {
+    font-size: 1.4rem;
   }
 
   /* ---- FOOTER ---- */
@@ -1183,10 +1288,6 @@ a {
   }
 
   .experience__sticky {
-    height: 100vh;
-  }
-
-  .details__track-wrap {
     height: 100vh;
   }
 }

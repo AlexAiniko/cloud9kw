@@ -21,7 +21,7 @@
   <link rel="preload" as="image" href="images/entrance-through-doors.jpg">
 
   <!-- Styles -->
-  <link rel="stylesheet" href="styles.css?v=6">
+  <link rel="stylesheet" href="styles.css?v=7">
 </head>
 <body>
 
@@ -68,6 +68,10 @@
       <div class="experience__watermark" aria-hidden="true">
         <span class="experience__watermark-cloud">Cloud</span>
         <span class="experience__watermark-nine">9</span>
+      </div>
+      <!-- Designer credit -- fades in during slideshow -->
+      <div class="experience__designer-credit" aria-hidden="true">
+        <span class="experience__designer-credit-text">Designed by Karen Lockwood</span>
       </div>
       <div class="experience__slides">
         <!-- Slide 0 : The Courtyard -- TEXT TOP, WHITE -->
@@ -141,7 +145,7 @@
 
   <!-- ============================================
        SCENE 3: THE DETAILS
-       Horizontal-scroll gallery of detail shots
+       Staggered masonry grid with scroll reveals
        ============================================ -->
   <section class="scene-details" id="details" aria-label="Architectural details">
     <div class="details__intro">
@@ -149,44 +153,42 @@
       <h2 class="details__heading details__heading--animated">Curated, not decorated</h2>
     </div>
 
-    <div class="details__track-wrap">
-      <div class="details__track">
-        <div class="details__item">
-          <div class="details__item-img">
-            <img src="images/scurto-453.jpg" alt="Signature gecko gate with custom iron tropical leaf and gecko metalwork bearing address 512" loading="lazy">
-          </div>
-          <span class="details__item-caption">The gecko gate</span>
+    <div class="details__grid">
+      <div class="details__item details__item--tall" data-reveal="0">
+        <div class="details__item-img">
+          <img src="images/scurto-453.jpg" alt="Signature gecko gate with custom iron tropical leaf and gecko metalwork bearing address 512" loading="lazy">
         </div>
-        <div class="details__item">
-          <div class="details__item-img">
-            <img src="images/scurto-431.jpg" alt="Open-plan living and dining with reclaimed wood table, white furnishings, and vaulted ceilings" loading="lazy">
-          </div>
-          <span class="details__item-caption">Hardwood underfoot</span>
+        <span class="details__item-caption">The gecko gate</span>
+      </div>
+      <div class="details__item details__item--short" data-reveal="1">
+        <div class="details__item-img">
+          <img src="images/scurto-431.jpg" alt="Open-plan living and dining with reclaimed wood table, white furnishings, and vaulted ceilings" loading="lazy">
         </div>
-        <div class="details__item">
-          <div class="details__item-img">
-            <img src="images/scurto-455.jpg" alt="Open entrance doors revealing the pool courtyard beyond, framed by the terracotta facade" loading="lazy">
-          </div>
-          <span class="details__item-caption">French doors to the courtyard</span>
+        <span class="details__item-caption">Hardwood underfoot</span>
+      </div>
+      <div class="details__item details__item--short" data-reveal="2">
+        <div class="details__item-img">
+          <img src="images/scurto-455.jpg" alt="Open entrance doors revealing the pool courtyard beyond, framed by the terracotta facade" loading="lazy">
         </div>
-        <div class="details__item">
-          <div class="details__item-img">
-            <img src="images/scurto-451.jpg" alt="Covered side porch with a white wooden swing bench flanked by tropical palms" loading="lazy">
-          </div>
-          <span class="details__item-caption">A porch swing for two</span>
+        <span class="details__item-caption">French doors to the courtyard</span>
+      </div>
+      <div class="details__item details__item--tall" data-reveal="3">
+        <div class="details__item-img">
+          <img src="images/scurto-451.jpg" alt="Covered side porch with a white wooden swing bench flanked by tropical palms" loading="lazy">
         </div>
-        <div class="details__item">
-          <div class="details__item-img">
-            <img src="images/pool-tropical.jpg" alt="Pool water feature with mosaic tile wall surrounded by dense tropical plantings" loading="lazy">
-          </div>
-          <span class="details__item-caption">Water and stone</span>
+        <span class="details__item-caption">A porch swing for two</span>
+      </div>
+      <div class="details__item details__item--tall" data-reveal="4">
+        <div class="details__item-img">
+          <img src="images/pool-tropical.jpg" alt="Pool water feature with mosaic tile wall surrounded by dense tropical plantings" loading="lazy">
         </div>
-        <div class="details__item">
-          <div class="details__item-img">
-            <img src="images/entrance-exterior.jpg" alt="Street view of 512 Fleming showing the terracotta entrance with gecko gate between Old Town storefronts" loading="lazy">
-          </div>
-          <span class="details__item-caption">512 Fleming Street</span>
+        <span class="details__item-caption">Water and stone</span>
+      </div>
+      <div class="details__item details__item--short" data-reveal="5">
+        <div class="details__item-img">
+          <img src="images/entrance-exterior.jpg" alt="Street view of 512 Fleming showing the terracotta entrance with gecko gate between Old Town storefronts" loading="lazy">
         </div>
+        <span class="details__item-caption">512 Fleming Street</span>
       </div>
     </div>
   </section>
@@ -212,14 +214,20 @@
   </section>
 
   <!-- ============================================
-       SCENE 5: THE DESIGNER (placeholder)
+       SCENE 5: THE DESIGNER -- Karen Lockwood
        ============================================ -->
   <section class="scene-designer" id="designer" aria-label="Design credits">
     <div class="designer__content">
       <p class="designer__text">Classic Key West architecture reimagined with modern comfort and timeless style.</p>
-      <!-- Swap in designer name when confirmed:
-      <p class="designer__credit">Designed by [Name]</p>
-      -->
+      <div class="designer__profile">
+        <div class="designer__headshot" aria-label="Karen Lockwood">
+          <span class="designer__initials">KL</span>
+        </div>
+        <div class="designer__info">
+          <p class="designer__credit">Designed by Karen Lockwood</p>
+          <a href="mailto:karen@lockwood.net" class="designer__contact">karen@lockwood.net</a>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -233,7 +241,7 @@
   </footer>
 
   <!-- Scripts -->
-  <script src="script.js?v=6"></script>
+  <script src="script.js?v=7"></script>
 
 </body>
 </html>

@@ -71,6 +71,7 @@
     var progressBar = document.querySelector('.experience__progress-bar');
     var counterCurrent = document.querySelector('.experience__counter-current');
     var watermark = document.querySelector('.experience__watermark');
+    var designerCredit = document.querySelector('.experience__designer-credit');
 
     if (!section || !slides.length) return;
 
@@ -83,13 +84,13 @@
       var sectionTop = -rect.top;
       var sectionHeight = section.offsetHeight - window.innerHeight;
 
-      // Show/hide watermark when in the experience section
-      if (watermark) {
-        if (sectionTop > -100 && sectionTop < sectionHeight + 100) {
-          watermark.classList.add('is-visible');
-        } else {
-          watermark.classList.remove('is-visible');
-        }
+      // Show/hide watermark and designer credit when in the experience section
+      if (sectionTop > -100 && sectionTop < sectionHeight + 100) {
+        if (watermark) watermark.classList.add('is-visible');
+        if (designerCredit) designerCredit.classList.add('is-visible');
+      } else {
+        if (watermark) watermark.classList.remove('is-visible');
+        if (designerCredit) designerCredit.classList.remove('is-visible');
       }
 
       if (sectionTop < 0 || sectionTop > sectionHeight) {
@@ -156,52 +157,10 @@
 
 
   // ============================================
-  // SCENE 3: DETAILS -- Horizontal scroll via vertical
+  // SCENE 3: DETAILS -- Staggered masonry reveal
   // ============================================
-  function initDetailsHorizontalScroll() {
-    var section = document.querySelector('.scene-details');
-    var track = document.querySelector('.details__track');
-    if (!section || !track) return;
-
-    var ticking = false;
-
-    function update() {
-      var rect = section.getBoundingClientRect();
-      var sectionTop = -rect.top;
-      var sectionHeight = section.offsetHeight - window.innerHeight;
-
-      if (sectionTop < 0) sectionTop = 0;
-      if (sectionTop > sectionHeight) sectionTop = sectionHeight;
-
-      var scrollProgress = sectionTop / sectionHeight;
-
-      var trackWidth = track.scrollWidth;
-      var viewportWidth = window.innerWidth;
-      var maxTranslate = Math.max(0, trackWidth - viewportWidth + 60);
-
-      var translateX = -scrollProgress * maxTranslate;
-
-      track.style.transform = 'translate3d(' + translateX + 'px, 0, 0)';
-
-      ticking = false;
-    }
-
-    window.addEventListener('scroll', function () {
-      if (!ticking) {
-        requestAnimationFrame(update);
-        ticking = true;
-      }
-    }, { passive: true });
-
-    window.addEventListener('resize', function () {
-      if (!ticking) {
-        requestAnimationFrame(update);
-        ticking = true;
-      }
-    }, { passive: true });
-
-    update();
-  }
+  // (No horizontal scroll JS needed -- handled by
+  // CSS grid + IntersectionObserver in initRevealObservers)
 
 
   // ============================================
@@ -235,25 +194,21 @@
     // Detail items -- staggered reveal as they enter viewport
     var detailItems = document.querySelectorAll('.details__item');
     if (detailItems.length) {
+      var revealBatch = 0;
       var itemObserver = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
           if (entry.isIntersecting) {
-            // Stagger based on item index within current visible batch
             var item = entry.target;
-            var delay = 0;
-            detailItems.forEach(function (el, idx) {
-              if (el === item) {
-                delay = idx * 0.08;
-              }
-            });
-            item.style.transitionDelay = delay + 's';
+            // Use data-reveal attribute for stagger delay (0.15s per item)
+            var revealIndex = parseInt(item.getAttribute('data-reveal') || '0', 10);
+            item.style.transitionDelay = (revealIndex * 0.12) + 's';
             item.classList.add('is-visible');
             itemObserver.unobserve(item);
           }
         });
       }, {
-        threshold: 0.1,
-        rootMargin: '0px 0px -40px 0px'
+        threshold: 0.08,
+        rootMargin: '0px 0px -80px 0px'
       });
 
       detailItems.forEach(function (item) {
@@ -352,7 +307,6 @@
   function init() {
     initArrivalParallax();
     initExperienceSlideshow();
-    initDetailsHorizontalScroll();
     initRevealObservers();
     initLazyLoad();
     initSmoothMomentum();
